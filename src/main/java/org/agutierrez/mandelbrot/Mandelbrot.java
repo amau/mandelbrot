@@ -33,5 +33,11 @@ public class Mandelbrot extends AbstractEscapeTimeFractal
 		
 		return new MandelbrotInfo(n,Tr,Ti);
 	}
+
+	@Override
+	public int getMax()
+	{
+		return maxIteration;
+	}
 	
 }

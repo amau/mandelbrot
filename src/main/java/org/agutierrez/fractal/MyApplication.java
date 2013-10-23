@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 import org.agutierrez.fractal.core.EscapeTime;
 import org.agutierrez.fractal.core.EscapeTimeInfo;
+import org.agutierrez.fractal.image.FractalImage;
 import org.agutierrez.mandelbrot.Mandelbrot;
 import org.agutierrez.mandelbrot.MandelbrotInfo;
 
@@ -31,13 +32,15 @@ public class MyApplication
 	public static void start()
 	{
 		System.out.println("Mandelbrot Set");
-		BufferedImage bufferedImage = new BufferedImage(WIDTH, HEIGHT,
-				BufferedImage.TYPE_INT_RGB);
+		EscapeTime mandelbrot = new Mandelbrot(255, 10.0);
+		FractalImage fractalImage = new FractalImage(mandelbrot,WIDTH, HEIGHT);
+		
+		fractalImage.paint();
 
-		drawShapesTwo(bufferedImage);
+		//drawShapesTwo(bufferedImage);
 		try
 		{
-			ImageIO.write(bufferedImage, "png", new File(
+			ImageIO.write(fractalImage, "png", new File(
 					"mandelbrot.png"));
 			System.out.println("Image has been created.");
 		}
