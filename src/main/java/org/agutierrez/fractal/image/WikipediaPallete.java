@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.agutierrez.fractal.core.EscapeTimeInfo;
+import org.agutierrez.mandelbrot.MandelbrotInfo;
 
 public class WikipediaPallete implements ColorPalette
 {
@@ -48,7 +49,7 @@ public class WikipediaPallete implements ColorPalette
 
 
 	@Override
-	public Color getColor(EscapeTimeInfo i)
+	public Color getColor(EscapeTimeInfo i, boolean bands)
 	{	
 		if (i.getN() == max)
 		{
@@ -56,10 +57,44 @@ public class WikipediaPallete implements ColorPalette
 		}
 		else
 		{
-			return mapping[i.getN()%16];
+			if(bands)
+			{	
+				return mapping[i.getN()%16];
+			}
+			else
+			{
+				return getContinuosColor(i);
+			}
 		}
 	}
 
+
+	private Color getContinuosColor(EscapeTimeInfo i)
+	{
+		MandelbrotInfo info = (MandelbrotInfo)i;
+		
+		double abs = Math.sqrt(info.getSquaredRe() + info.getSquaredIm());
+		double logAbs = Math.log(abs);
+		double continuous = 1 + info.getN() - Math.log(logAbs) / Math.log(2.0);
+		
+
+
+		int a = (int) Math.floor(continuous);
+					
+		Color res = getMean(mapping[a%16], mapping[(a + 1)%16],1- (continuous-a));
+
+		return res;
+	}
+
+
+	private Color getMean(Color one, Color two, double p)
+	{
+		int r = (int) Math.floor(p*one.getRed() + (1-p)*two.getRed()) ;
+		int g = (int) Math.floor(p*one.getGreen() + (1-p)*two.getGreen()) ;
+		int b = (int) Math.floor(p*one.getBlue() + (1-p)*two.getBlue()) ;
+		
+		return new Color(r, g, b);	
+	}
 
 	private Color[] mapping;
 

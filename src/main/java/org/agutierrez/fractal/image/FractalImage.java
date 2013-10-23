@@ -26,7 +26,7 @@ public class FractalImage extends BufferedImage
 		this.colors = new WikipediaPallete(0,fractal.getMax());
 	}
 	
-	public void paint()
+	public void paint(boolean bands)
 	{
 		for (int i = 0; i < getWidth(); i++)
 		{
@@ -42,7 +42,7 @@ public class FractalImage extends BufferedImage
 					}
 				
 				EscapeTimeInfo info  =  fractal.escapeTime(re, im);
-				Color color =  colors.getColor(info);
+				Color color =  colors.getColor(info, bands);
 				this.setRGB(i,j,color.getRGB());
 			}
 		}	

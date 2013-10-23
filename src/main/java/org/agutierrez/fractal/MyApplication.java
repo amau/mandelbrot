@@ -35,7 +35,7 @@ public class MyApplication
 		EscapeTime mandelbrot = new Mandelbrot(255, 10.0);
 		FractalImage fractalImage = new FractalImage(mandelbrot,WIDTH, HEIGHT);
 		
-		fractalImage.paint();
+		fractalImage.paint(false);
 
 		//drawShapesTwo(bufferedImage);
 		try
