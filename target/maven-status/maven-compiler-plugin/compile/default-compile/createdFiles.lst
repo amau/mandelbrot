@@ -1,9 +1,0 @@
-org/agutierrez/fractal/MyApplication.class
-org/agutierrez/mandelbrot/Mandelbrot.class
-org/agutierrez/fractal/image/ColorPalette.class
-org/agutierrez/fractal/core/EscapeTime.class
-org/agutierrez/fractal/core/EscapeTimeInfo.class
-org/agutierrez/fractal/core/AbstractEscapeTimeFractal.class
-org/agutierrez/fractal/image/WikipediaPallete.class
-org/agutierrez/mandelbrot/MandelbrotInfo.class
-org/agutierrez/fractal/image/FractalImage.class
